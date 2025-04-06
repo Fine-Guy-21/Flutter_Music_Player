@@ -5,7 +5,8 @@ class FoldersContainer extends StatelessWidget {
   final bool isDarkMode;
   const FoldersContainer({super.key, required this.isDarkMode});
 
-  final int foldercount = 0;
+  final int folderswithtrackscount = 0;
+  final int trackscount = 0;
   final String name = "";
 
   @override
@@ -31,7 +32,16 @@ class FoldersContainer extends StatelessWidget {
             ),
           ),
 
-          foldercount >= 0 ? foldersView(appColors) : tracksView(),
+          folderswithtrackscount > 0
+              ? foldersView(appColors)
+              : trackscount > 0
+                  ? tracksView(appColors)
+                  : SizedBox(
+                      height: 100,
+                      child: Center(
+                        child: Text('No Audio Data'),
+                      ),
+                    ),
         ],
       ),
     );
@@ -98,7 +108,69 @@ class FoldersContainer extends StatelessWidget {
     );
   }
 
-  Widget tracksView() {
-    return Container();
+  Widget tracksView(AppColors color) {
+    return GestureDetector(
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: color.primaryTextColor,
+          ),
+          color: Colors.white,
+        ),
+        padding: EdgeInsets.all(10),
+        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+        child: Row(
+          children: [
+            // Image
+            name == ""
+                ? Container(
+                    padding: EdgeInsets.all(10),
+                    color: Colors.black,
+                    child: Icon(
+                      Icons.music_note,
+                      color: Colors.white,
+                    ),
+                  )
+                : Image.asset(
+                    name,
+                    width: 60,
+                    height: 60,
+                  ),
+            SizedBox(width: 10),
+
+            // Title & Artist & file name
+            Column(
+              children: [
+                //Title
+                Text(
+                  'Title of the song',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+
+                // Artist name
+                Text(
+                  'Artist Name',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+              ],
+            ),
+            Spacer(),
+            //  Options icon
+            IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.more_vert),
+            ),
+          ],
+        ),
+      ),
+    );
   }
+
+//
 }
