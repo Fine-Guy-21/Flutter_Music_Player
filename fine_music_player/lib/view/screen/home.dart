@@ -84,22 +84,9 @@ class _HomePageState extends State<HomePage>
             // Tab View
             _buildTabBar(),
 
-            SizedBox(height: 20),
             // Musics List
             Expanded(
               child: _buildTabView(),
-              // child: ListView.builder(
-              //     itemCount: 10,
-              //     itemBuilder: (context, index) {
-              //       return GestureDetector(
-              //         onTap: () {
-              //           print('object clicked');
-              //         },
-              //         child: TracksContainer(
-              //           isDarkMode: isdarkmode,
-              //         ),
-              //       );
-              //     }),
             ),
 
             // Playback controls
@@ -139,7 +126,7 @@ class _HomePageState extends State<HomePage>
       children: [
         PlayNowContainers(),
         TracksContainer(isDarkMode: isdarkmode),
-        FoldersContainer(),
+        FoldersContainer(isDarkMode: isdarkmode),
         PlaylistsContainer(),
         ArtistsContainer(),
         AlbumsContainer(),

@@ -12,3 +12,11 @@ class PlayNowContainers extends StatelessWidget {
     );
   }
 }
+
+
+// Recently Added
+// Most Played
+// Recently Played
+// Top Rated 
+// Never Played
+// Favorites 
