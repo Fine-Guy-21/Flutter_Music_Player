@@ -114,37 +114,36 @@ class FoldersContainer extends StatelessWidget {
   }
 
   Widget tracksView(AppColors color) {
-    return GestureDetector(
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: color.primaryTextColor,
-          ),
-          color: Colors.white,
-        ),
-        padding: EdgeInsets.all(10),
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
-        child: Row(
-          children: [
-            // Image
-            name == ""
-                ? Container(
-                    padding: EdgeInsets.all(10),
-                    color: Colors.black,
-                    child: Icon(
-                      Icons.music_note,
-                      color: Colors.white,
-                    ),
-                  )
-                : Image.asset(
-                    name,
-                    width: 60,
-                    height: 60,
+    return Container(
+      decoration: BoxDecoration(
+        color: color.backgroundColor,
+      ),
+      padding: EdgeInsets.all(10),
+      margin: EdgeInsets.symmetric(horizontal: 5, vertical: 0),
+      child: Row(
+        children: [
+          // Image
+          name == ""
+              ? Container(
+                  padding: EdgeInsets.all(10),
+                  color: color.primaryTextColor,
+                  child: Icon(
+                    Icons.music_note,
+                    color: color.backgroundColor,
+                    size: 40,
                   ),
-            SizedBox(width: 10),
+                )
+              : Image.asset(
+                  name,
+                  width: 60,
+                  height: 60,
+                ),
+          SizedBox(width: 10),
 
-            // Title & Artist & file name
-            Column(
+          // Title & Artist & file name
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 //Title
                 Text(
@@ -152,6 +151,7 @@ class FoldersContainer extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
+                    color: color.primaryTextColor,
                   ),
                 ),
 
@@ -161,18 +161,21 @@ class FoldersContainer extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w300,
+                    color: color.unchangableColor,
                   ),
                 ),
               ],
             ),
-            Spacer(),
-            //  Options icon
-            IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.more_vert),
+          ),
+          //  Options icon
+          IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.more_vert,
+              color: color.primaryTextColor,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
