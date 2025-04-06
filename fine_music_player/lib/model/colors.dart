@@ -8,5 +8,5 @@ class AppColors {
   Color get primaryTextColor => isDarkMode ? Colors.white : Colors.black;
   Color get backgroundColor => isDarkMode ? Colors.black : Colors.white;
   Color get unchangableColor =>
-      isDarkMode ? Colors.grey.shade600 : Colors.grey.shade600;
+      isDarkMode ? Colors.grey.shade400 : Colors.grey.shade800;
 }

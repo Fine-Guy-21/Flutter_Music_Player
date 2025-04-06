@@ -8,39 +8,36 @@ class TracksContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppColors appColors = AppColors(isDarkMode);
     return ListView.builder(
       itemCount: 10,
       itemBuilder: (context, index) {
         return GestureDetector(
           onTap: () {},
-          child: _buildtracks(),
+          child: _buildtracks(appColors),
         );
       },
     );
   }
 
-  Widget _buildtracks() {
-    AppColors appColors = AppColors(isDarkMode);
-
+  Widget _buildtracks(AppColors color) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(
-          color: appColors.primaryTextColor,
-        ),
-        color: Colors.white,
+        color: color.backgroundColor,
       ),
       padding: EdgeInsets.all(10),
-      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+      margin: EdgeInsets.symmetric(horizontal: 5, vertical: 0),
       child: Row(
         children: [
           // Image
           name == ""
               ? Container(
                   padding: EdgeInsets.all(10),
-                  color: Colors.black,
+                  color: color.primaryTextColor,
                   child: Icon(
                     Icons.music_note,
-                    color: Colors.white,
+                    color: color.backgroundColor,
+                    size: 40,
                   ),
                 )
               : Image.asset(
@@ -51,32 +48,39 @@ class TracksContainer extends StatelessWidget {
           SizedBox(width: 10),
 
           // Title & Artist & file name
-          Column(
-            children: [
-              //Title
-              Text(
-                'Title of the song',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500,
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //Title
+                Text(
+                  'Title of the song',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: color.primaryTextColor,
+                  ),
                 ),
-              ),
 
-              // Artist name
-              Text(
-                'Artist Name',
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w300,
+                // Artist name
+                Text(
+                  'Artist Name',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w300,
+                    color: color.unchangableColor,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-          Spacer(),
           //  Options icon
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.more_vert),
+            icon: Icon(
+              Icons.more_vert,
+              color: color.primaryTextColor,
+            ),
           ),
         ],
       ),

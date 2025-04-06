@@ -5,7 +5,7 @@ class FoldersContainer extends StatelessWidget {
   final bool isDarkMode;
   const FoldersContainer({super.key, required this.isDarkMode});
 
-  final int folderswithtrackscount = 0;
+  final int folderswithtrackscount = 1;
   final int trackscount = 0;
   final String name = "";
 
@@ -51,17 +51,17 @@ class FoldersContainer extends StatelessWidget {
     return GestureDetector(
       child: Container(
         padding: EdgeInsets.all(10),
-        color: Colors.black12,
+        color: color.backgroundColor,
         child: Row(
-          children: [
+          children: <Widget>[
             // Image
             name == ""
                 ? Container(
                     padding: EdgeInsets.all(10),
-                    color: Colors.black,
+                    color: color.primaryTextColor,
                     child: Icon(
                       Icons.folder_copy_outlined,
-                      color: Colors.white,
+                      color: color.backgroundColor,
                       size: 40,
                     ),
                   )
@@ -73,34 +73,39 @@ class FoldersContainer extends StatelessWidget {
             SizedBox(width: 10),
 
             // Title & Artist & file name
-            Column(
-              children: [
-                //Title
-                Text(
-                  'Folder Name',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: color.primaryTextColor,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  //Title
+                  Text(
+                    'Folder Name',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: color.primaryTextColor,
+                    ),
                   ),
-                ),
 
-                // Artist name
-                Text(
-                  '199 tracks',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w300,
-                    color: color.primaryTextColor,
+                  // Artist name
+                  Text(
+                    '199 tracks',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w300,
+                      color: color.primaryTextColor,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-            Spacer(),
             //  Options icon
             IconButton(
               onPressed: () {},
-              icon: Icon(Icons.more_vert),
+              icon: Icon(
+                Icons.more_vert,
+                color: color.primaryTextColor,
+              ),
             ),
           ],
         ),

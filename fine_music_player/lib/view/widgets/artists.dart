@@ -5,36 +5,30 @@ class ArtistsContainer extends StatelessWidget {
   final bool isDarkMode;
   const ArtistsContainer({super.key, required this.isDarkMode});
 
-  final int artistscount = 0;
+  final int artistscount = 40;
   final String name = "";
   @override
   Widget build(BuildContext context) {
     AppColors appColors = AppColors(isDarkMode);
 
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          SizedBox(height: 20),
-          artistscount > 0
-              ? GridView.builder(
-                  shrinkWrap: true,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 8,
-                    mainAxisSpacing: 8,
-                    childAspectRatio: 1,
-                  ),
-                  itemCount: artistscount,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {},
-                      child: _buildArtistsGrid(appColors),
-                    );
-                  })
-              : Text('No Artists found '),
-        ],
-      ),
-    );
+    return artistscount > 0
+        ? GridView.builder(
+            shrinkWrap: true,
+            physics: BouncingScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              crossAxisSpacing: 8,
+              mainAxisSpacing: 8,
+              childAspectRatio: 1,
+            ),
+            itemCount: artistscount,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {},
+                child: _buildArtistsGrid(appColors),
+              );
+            })
+        : Text('No Artists found ');
   }
 
   Widget _buildArtistsGrid(AppColors color) {
@@ -46,7 +40,7 @@ class ArtistsContainer extends StatelessWidget {
                 padding: EdgeInsets.all(10),
                 color: color.primaryTextColor,
                 child: Icon(
-                  Icons.folder_copy_outlined,
+                  Icons.person,
                   color: color.backgroundColor,
                   size: 65,
                 ),

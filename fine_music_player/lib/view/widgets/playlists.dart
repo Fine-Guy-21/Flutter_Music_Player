@@ -1,107 +1,153 @@
 import 'package:fine_music_player/model/colors.dart';
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
 class PlaylistsContainer extends StatelessWidget {
   final bool isDarkMode;
-  PlaylistsContainer({super.key, required this.isDarkMode});
+  const PlaylistsContainer({super.key, required this.isDarkMode});
 
-  String name = "";
-  int playlistscount = 0;
+  final String name = "";
+  final int playlistscount = 9;
+
   @override
   Widget build(BuildContext context) {
     AppColors appColors = AppColors(isDarkMode);
-    return SingleChildScrollView(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+
+    return ListView(
+      physics: const BouncingScrollPhysics(),
       children: [
-        if (playlistscount > 0) _displayPlaylists(appColors),
-        // Create Empty playlist
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(10, 5, 0, 0),
-            child: TextButton(
-                onPressed: () {},
-                child: Text(
-                  'CREATE EMPTY PLAYLIST',
-                  style: TextStyle(
-                    fontSize: 15,
-                  ),
-                )),
+        // Playlist items
+        if (playlistscount > 0)
+          ...List.generate(playlistscount, (index) {
+            return _displayPlaylists(appColors, index);
+          })
+        else
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Text(
+                'No playlists found',
+                style: TextStyle(color: appColors.primaryTextColor),
+              ),
+            ),
           ),
-        ),
-        // Import playlist
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Padding(
-            padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-            child: TextButton(
-                onPressed: () {},
-                child: Text('IMPORT',
-                    style: TextStyle(
-                      fontSize: 15,
-                    ))),
+
+        // Create and Import buttons (appear after last playlist)
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          child: Column(
+            children: [
+              // Create Empty playlist
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'CREATE EMPTY PLAYLIST',
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: appColors.primaryTextColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+              // Import playlist
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
+                  child: TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      'IMPORT',
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: appColors.primaryTextColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ],
-    ));
+    );
   }
 
-  _displayPlaylists(AppColors color) {
+  Widget _displayPlaylists(AppColors color, int index) {
     return GestureDetector(
+      onTap: () {},
       child: Container(
-        padding: EdgeInsets.all(10),
-        color: Colors.black12,
+        padding: const EdgeInsets.all(10),
+        margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+        decoration: BoxDecoration(
+          color: color.backgroundColor,
+          borderRadius: BorderRadius.circular(8),
+        ),
         child: Row(
           children: [
-            // Image
-            name == ""
+            // Playlist cover
+            name.isEmpty
                 ? Container(
                     padding: EdgeInsets.all(10),
-                    color: Colors.black,
+                    color: color.primaryTextColor,
                     child: Icon(
                       Icons.playlist_play,
-                      color: Colors.white,
+                      color: color.backgroundColor,
                       size: 40,
                     ),
                   )
-                : Image.asset(
-                    name,
-                    width: 90,
-                    height: 90,
+                : ClipRRect(
+                    borderRadius: BorderRadius.circular(4),
+                    child: Image.asset(
+                      name,
+                      width: 60,
+                      height: 60,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-            SizedBox(width: 10),
 
-            // Title & Artist & file name
-            Column(
-              children: [
-                //Title
-                Text(
-                  ' My Playlist',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                    color: color.primaryTextColor,
-                  ),
-                ),
+            const SizedBox(width: 12),
 
-                // Artist name
-                Text(
-                  '0 tracks',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w300,
-                    color: color.primaryTextColor,
+            // Playlist info
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Playlist name
+                  Text(
+                    'Playlist ${index + 1}',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: color.primaryTextColor,
+                    ),
                   ),
-                ),
-              ],
+
+                  // Track count
+                  Text(
+                    '${index * 3} tracks',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w300,
+                      color: color.primaryTextColor.withOpacity(0.7),
+                    ),
+                  ),
+                ],
+              ),
             ),
-            Spacer(),
-            //  Options icon
+
+            // Options button
             IconButton(
               onPressed: () {},
-              icon: Icon(Icons.more_vert),
+              icon: Icon(
+                Icons.more_vert,
+                color: color.primaryTextColor,
+              ),
             ),
           ],
         ),
