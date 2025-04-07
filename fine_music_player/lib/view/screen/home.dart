@@ -129,7 +129,7 @@ class _HomePageState extends State<HomePage>
         FoldersContainer(isDarkMode: isdarkmode),
         PlaylistsContainer(isDarkMode: isdarkmode),
         ArtistsContainer(isDarkMode: isdarkmode),
-        AlbumsContainer(),
+        AlbumsContainer(isDarkMode: isdarkmode),
         GenresContainer(),
         MostplayedContainer(),
       ],

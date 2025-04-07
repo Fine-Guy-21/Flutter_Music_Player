@@ -5,7 +5,7 @@ class ArtistsContainer extends StatelessWidget {
   final bool isDarkMode;
   const ArtistsContainer({super.key, required this.isDarkMode});
 
-  final int artistscount = 40;
+  final int artistscount = 21;
   final String name = "";
   @override
   Widget build(BuildContext context) {
@@ -17,18 +17,26 @@ class ArtistsContainer extends StatelessWidget {
             physics: BouncingScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
-              crossAxisSpacing: 8,
-              mainAxisSpacing: 8,
-              childAspectRatio: 1,
+              crossAxisSpacing: 1,
+              mainAxisSpacing: 1,
+              childAspectRatio: 0.85,
             ),
             itemCount: artistscount,
             itemBuilder: (context, index) {
-              return GestureDetector(
-                onTap: () {},
-                child: _buildArtistsGrid(appColors),
-              );
+              return Container(
+                  margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                          width: 1, color: appColors.primaryTextColor)),
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: _buildArtistsGrid(appColors),
+                  ));
             })
-        : Text('No Artists found ');
+        : Align(
+            alignment: Alignment.center,
+            child: Text('No Artists found '),
+          );
   }
 
   Widget _buildArtistsGrid(AppColors color) {
