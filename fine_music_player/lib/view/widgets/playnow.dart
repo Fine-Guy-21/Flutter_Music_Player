@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class PlayNowContainers extends StatelessWidget {
-  const PlayNowContainers({super.key});
+  final bool isDarkMode;
+  const PlayNowContainers({super.key, required this.isDarkMode});
+  final String name = "";
 
   @override
   Widget build(BuildContext context) {

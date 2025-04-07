@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage>
     return TabBarView(
       controller: _tabController,
       children: [
-        PlayNowContainers(),
+        PlayNowContainers(isDarkMode: isdarkmode),
         TracksContainer(isDarkMode: isdarkmode),
         FoldersContainer(isDarkMode: isdarkmode),
         PlaylistsContainer(isDarkMode: isdarkmode),
