@@ -13,30 +13,33 @@ class AlbumsContainer extends StatelessWidget {
     AppColors appColors = AppColors(isDarkMode);
 
     return artistscount > 0
-        ? GridView.builder(
-            shrinkWrap: true,
-            physics: BouncingScrollPhysics(),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
-              crossAxisSpacing: 1,
-              mainAxisSpacing: 1,
-              childAspectRatio: 0.8,
-            ),
-            itemCount: artistscount,
-            itemBuilder: (context, index) {
-              return Container(
-                margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-                decoration: BoxDecoration(
-                    border: Border.all(
-                  width: 1,
-                  color: appColors.primaryTextColor,
-                )),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: _buildArtistsGrid(appColors),
+        ? Container(
+            padding: EdgeInsets.symmetric(vertical: 10),
+            child: GridView.builder(
+                shrinkWrap: true,
+                physics: BouncingScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 1,
+                  mainAxisSpacing: 1,
+                  childAspectRatio: 0.8,
                 ),
-              );
-            })
+                itemCount: artistscount,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: EdgeInsets.symmetric(horizontal: 3, vertical: 3),
+                    decoration: BoxDecoration(
+                        border: Border.all(
+                      width: 1,
+                      color: appColors.primaryTextColor,
+                    )),
+                    child: GestureDetector(
+                      onTap: () {},
+                      child: _buildArtistsGrid(appColors),
+                    ),
+                  );
+                }),
+          )
         : Align(
             alignment: Alignment.center,
             child: Text('No Albums found '),
