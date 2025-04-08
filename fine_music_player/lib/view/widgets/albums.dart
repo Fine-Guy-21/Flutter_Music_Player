@@ -50,10 +50,10 @@ class AlbumsContainer extends StatelessWidget {
         name == ""
             ? Container(
                 padding: EdgeInsets.all(5),
-                color: color.primaryTextColor,
+                color: Colors.grey.shade400,
                 child: Icon(
                   MdiIcons.disc,
-                  color: color.backgroundColor,
+                  color: Colors.black,
                   size: 80,
                 ),
               )

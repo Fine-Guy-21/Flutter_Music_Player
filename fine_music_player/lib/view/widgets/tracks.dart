@@ -33,10 +33,10 @@ class TracksContainer extends StatelessWidget {
           name == ""
               ? Container(
                   padding: EdgeInsets.all(10),
-                  color: color.primaryTextColor,
+                  color: Colors.grey.shade400,
                   child: Icon(
                     Icons.music_note,
-                    color: color.backgroundColor,
+                    color: Colors.black,
                     size: 40,
                   ),
                 )

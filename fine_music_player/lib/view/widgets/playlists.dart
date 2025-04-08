@@ -94,10 +94,10 @@ class PlaylistsContainer extends StatelessWidget {
             name.isEmpty
                 ? Container(
                     padding: EdgeInsets.all(10),
-                    color: color.primaryTextColor,
+                    color: Colors.grey.shade400,
                     child: Icon(
                       Icons.playlist_play,
-                      color: color.backgroundColor,
+                      color: Colors.black,
                       size: 40,
                     ),
                   )

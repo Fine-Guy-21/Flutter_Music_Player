@@ -58,10 +58,10 @@ class FoldersContainer extends StatelessWidget {
             name == ""
                 ? Container(
                     padding: EdgeInsets.all(10),
-                    color: color.primaryTextColor,
+                    color: Colors.grey.shade400,
                     child: Icon(
                       Icons.folder_copy_outlined,
-                      color: color.backgroundColor,
+                      color: Colors.black,
                       size: 40,
                     ),
                   )
