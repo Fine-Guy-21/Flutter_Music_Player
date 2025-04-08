@@ -11,6 +11,7 @@ class PlayNowContainers extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
+          const SizedBox(height: 10),
           _buildDoubleGrid('RECENTLY ADDED', appColors),
           const SizedBox(height: 10),
           _buildMiniGrid('RECENTLY PLAYED', appColors),

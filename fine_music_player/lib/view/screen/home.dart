@@ -123,6 +123,7 @@ class _HomePageState extends State<HomePage>
   Widget _buildTabView() {
     return TabBarView(
       controller: _tabController,
+      physics: BouncingScrollPhysics(),
       children: [
         PlayNowContainers(isDarkMode: isdarkmode),
         TracksContainer(isDarkMode: isdarkmode),
